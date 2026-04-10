@@ -1,0 +1,44 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Recurso {
+  id: Int!
+  titulo: String!
+  autor: String!
+  categorias: [Categoria!]
+}
+
+type EstadisticasGenerales {
+  totalRecursos: Int!
+  totalAutores: Int!
+}
+
+type AutorCount {
+  autor: String!
+  total_recursos: Int!
+}
+
+type Categoria {
+  id: Int!
+  nombre: String!
+  descripcion: String!
+  recursos: [Recurso!]
+}
+
+type CategoriaCount {
+  nombre: String!
+  total_recursos: Int!
+}
+
+type Query {
+  categorias: [Categoria!]!
+  contarRecursosPorCategoria: [CategoriaCount!]!
+  recursos(skip: Int = 0, take: Int = 15): [Recurso!]!
+  recursosPorAutor(autor: String!): [Recurso!]!
+  recursosSinCategoria: [Recurso!]!
+  estadisticas: EstadisticasGenerales!
+  autoresAgrupados: [AutorCount!]!
+  predecirValoresFuturos(muestrasHistoricas: [Float!]!, pasos: Int!): [Float!]!
+  estimarComportamientoSenal(muestrasDeEntrada: [Float!]!): [Float!]!
+}

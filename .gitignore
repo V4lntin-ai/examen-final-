@@ -1,0 +1,34 @@
+# Dependencias de Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Archivos generados por el editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Archivos de entorno
+.env
+.env.local
+.env.*.local
+
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de log
+logs/
+*.log
+
+# Archivos SQL generados (opcional, si no quieres subir los datos)
+*.sql
+
+# Archivos temporales
+*.tmp
+*.temp
