@@ -11,7 +11,9 @@ export class CategoriasService {
   ) {}
 
   async findAll(): Promise<Categoria[]> {
-    return this.categoriaRepository.find();
+    return this.categoriaRepository.createQueryBuilder('c')
+    .groupBy('c.nombre')
+    .getMany();
   }
 
   async contarRecursos(): Promise<CategoriaCount[]> {

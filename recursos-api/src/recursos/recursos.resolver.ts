@@ -10,8 +10,11 @@ export class RecursosResolver {
   findAll(
     @Args('skip', { type: () => Int, nullable: true, defaultValue: 0 }) skip: number,
     @Args('take', { type: () => Int, nullable: true, defaultValue: 15 }) take: number,
+    @Args('titulo', { nullable: true }) titulo?: string,
+    @Args('categoriaId', { type: () => Int, nullable: true }) categoriaId?: number,
+    @Args('autor', { nullable: true }) autor?: string,
   ) { 
-    return this.recursosService.findAll(skip, take); 
+    return this.recursosService.findAll(skip, take, titulo, categoriaId, autor); 
   }
 
   @Query(() => [Recurso], { name: 'recursosPorAutor' })

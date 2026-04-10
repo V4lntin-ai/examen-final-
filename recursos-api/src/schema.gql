@@ -34,7 +34,7 @@ type CategoriaCount {
 type Query {
   categorias: [Categoria!]!
   contarRecursosPorCategoria: [CategoriaCount!]!
-  recursos(skip: Int = 0, take: Int = 15): [Recurso!]!
+  recursos(skip: Int = 0, take: Int = 15, titulo: String, categoriaId: Int, autor: String): [Recurso!]!
   recursosPorAutor(autor: String!): [Recurso!]!
   recursosSinCategoria: [Recurso!]!
   estadisticas: EstadisticasGenerales!

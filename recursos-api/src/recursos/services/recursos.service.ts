@@ -10,13 +10,35 @@ export class RecursosService {
     private recursoRepository: Repository<Recurso>,
   ) {}
 
-  async findAll(skip: number = 0, take: number = 15): Promise<Recurso[]> {
-    return this.recursoRepository.find({ 
-      relations: ['categorias'], 
-      skip: skip, 
-      take: take,
-      order: { id: 'DESC' }
-    });
+  async findAll(
+    skip: number = 0, 
+    take: number = 15,
+    titulo?: string,
+    categoriaId?: number,
+    autor?: string
+  ): Promise<Recurso[]> {
+    const query = this.recursoRepository.createQueryBuilder('recurso')
+      .leftJoinAndSelect('recurso.categorias', 'categoria')
+      .skip(skip)
+      .take(take)
+      .orderBy('recurso.id', 'DESC');
+
+    // Filtro por Título (Búsqueda parcial)
+    if (titulo) {
+      query.andWhere('recurso.titulo LIKE :titulo', { titulo: `%${titulo}%` });
+    }
+
+    // Filtro por Autor
+    if (autor) {
+      query.andWhere('recurso.autor = :autor', { autor });
+    }
+
+    // Filtro por Categoría
+    if (categoriaId) {
+      query.andWhere('categoria.id = :categoriaId', { categoriaId });
+    }
+
+    return query.getMany();
   }
 
   async findByAutor(autor: string): Promise<Recurso[]> {

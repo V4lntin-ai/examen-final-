@@ -39,3 +39,27 @@ export const GET_AUTORES_AGRUPADOS = gql`
     }
   }
 `;
+
+export const GET_RECURSOS_FILTRADOS = gql`
+  query ListarRecursos($skip: Int, $take: Int, $titulo: String, $categoriaId: Int, $autor: String) {
+    recursos(skip: $skip, take: $take, titulo: $titulo, categoriaId: $categoriaId, autor: $autor) {
+      id
+      titulo
+      autor
+      categorias {
+        id
+        nombre
+      }
+    }
+  }
+`;
+
+export const LISTAR_CATEGORIAS_SIMPLE = gql`
+  query {
+    categorias {
+      id
+      nombre
+    }
+  }
+    
+`;
